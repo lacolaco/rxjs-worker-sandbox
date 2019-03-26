@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Observable, Subject } from 'rxjs';
-import { concatMapOnWorker } from '../lib/mapOnWorker';
+import { mapOnWorker } from '../lib/mapOnWorker';
 import { WorkerSubject } from '../lib/worker-subject';
 
 @Component({
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     );
 
     this.calculated$ = interval(1).pipe(
-      concatMapOnWorker(async i => Math.sqrt(i)),
+      mapOnWorker(async i => Math.sqrt(i)),
     );
   }
 

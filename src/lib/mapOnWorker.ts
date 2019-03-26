@@ -2,6 +2,8 @@ import gleenlet from 'greenlet';
 import { from, Observable } from 'rxjs';
 import { concatMap, switchMap, exhaustMap } from 'rxjs/operators';
 
+export const mapOnWorker = concatMapOnWorker;
+
 export function concatMapOnWorker<T, U>(fn: (arg: T) => Promise<U>) {
   const workerized = gleenlet(fn);
   return (source: Observable<T>): Observable<U> => {
